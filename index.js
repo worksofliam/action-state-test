@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const wait = require('./wait');
-
+const randomFile = require(`./randomFile`);
 
 // most @actions toolkit packages have async methods
 async function run() {
@@ -13,6 +13,14 @@ async function run() {
     core.info((new Date()).toTimeString());
 
     core.setOutput('time', new Date().toTimeString());
+
+    if (randomFile.someData) {
+      core.info(`We have data: ${randomFile.someData}`);
+    } else {
+      randomFile.someData = `Hello world`;
+      core.info(`No data. Setting some`);
+    }
+
   } catch (error) {
     core.setFailed(error.message);
   }
