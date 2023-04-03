@@ -5,6 +5,7 @@ const randomFile = require(`./randomFile`);
 // most @actions toolkit packages have async methods
 async function run() {
   try {
+    core.info(`Hello world ${randomFile.someData}`);
 
     if (randomFile.someData) {
       core.info(`We have data: ${randomFile.someData}`);
@@ -12,7 +13,7 @@ async function run() {
       randomFile.someData = `Hello world`;
       core.info(`No data. Setting some`);
     }
-    
+
     const ms = core.getInput('milliseconds');
     core.info(`Waiting ${ms} milliseconds ...`);
 
